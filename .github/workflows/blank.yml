@@ -1,5 +1,5 @@
 
-name: Sync workflow
+name: Sync New workflow
 
 on:
   schedule:
