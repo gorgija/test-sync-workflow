@@ -3,7 +3,7 @@ name: New Sync workflow
 
 on:
   schedule:
-    - cron: '0/5 * * * *' 
+    - cron: '0/10 * * * *' 
 
 jobs:
   sync:
@@ -18,12 +18,17 @@ jobs:
           USER_NAME:  ${{ secrets.USER_NAME }}
           TOKEN: ${{ github.token }}
       - run: |
-          git config --global user.email "georgievski.one@gmail.com"
-          git config --global user.name "Gorgija"
+          git config --global user.email $USER_EMAIL
+          git config --global user.name "$USER_NAME
           git remote add upstream $GITHUB_SERVER_URL/geored/test-sync-workflow.git
           git remote -v
           git fetch upstream
           git checkout main
           git merge --allow-unrelated-histories upstream/main
           git push --set-upstream origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USER_EMAIL:  ${{ secrets.USER_EMAIL }}
+          USER_NAME:  ${{ secrets.USER_NAME }}
+          TOKEN: ${{ github.token }}
 
