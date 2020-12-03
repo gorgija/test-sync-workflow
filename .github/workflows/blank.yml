@@ -20,5 +20,5 @@ jobs:
           git remote -v
           git fetch upstream
           git checkout main
-          git merge  upstream/main
+          git merge --allow-unrelated-histories upstream/main
           git push --set-upstream origin main
