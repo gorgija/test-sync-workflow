@@ -15,9 +15,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: |
-          pwd
-          ls -laih
+          git remote -v
           git remote add upstream $GITHUB_SERVER_URL/geored/test-sync-workflow.git
+          git remote -v
           git fetch upstream
           git checkout main
           git merge  upstream/main
