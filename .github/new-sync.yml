@@ -1,0 +1,24 @@
+
+name: Sync-New
+
+on:
+  schedule:
+    - cron: '0/5 * * * *' 
+
+jobs:
+  sync-new:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ github.token }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          pwd
+          ls -laih
+          git remote add upstream $GITHUB_SERVER_URL/geored/test-sync-worrkflow.git
+          git fetch upstream
+          git checkout main
+          git merge  upstream/main
+          git push --set-upstream origin main
