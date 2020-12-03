@@ -19,6 +19,6 @@ jobs:
           ls -laih
           git remote add upstream $GITHUB_SERVER_URL/geored/test-sync-workflow.yml
           git fetch upstream
-          git checkout master
+          git checkout main
           git merge  upstream/master
-          git push
+          git push --set-upstream origin main
