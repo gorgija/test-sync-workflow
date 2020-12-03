@@ -17,6 +17,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: |
+          echo $USER_EMAIL
+          echo $USER_NAME
           git config --global user.email $USER_EMAIL
           git config --global user.name $USER_NAME
           git remote add upstream $GITHUB_SERVER_URL/geored/test-sync-workflow.git
