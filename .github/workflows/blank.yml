@@ -3,7 +3,7 @@ name: New Sync workflow
 
 on:
   schedule:
-    - cron: '0/10 * * * *' 
+    - cron: '0/15 * * * *' 
 
 jobs:
   sync:
