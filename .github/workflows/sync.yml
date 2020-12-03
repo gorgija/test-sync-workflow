@@ -17,10 +17,8 @@ jobs:
           USER_NAME:  ${{ secrets.USER_NAME }}
           TOKEN: ${{ github.token }}
       - run: |
-          echo $USER_EMAIL
-          echo $USER_NAME
-          git config --global user.email $USER_EMAIL
-          git config --global user.name $USER_NAME
+          git config --global user.email "georgievski.one@gmail.com"
+          git config --global user.name "Gorgija"
           git remote add upstream $GITHUB_SERVER_URL/geored/test-sync-workflow.git
           git remote -v
           git fetch upstream
