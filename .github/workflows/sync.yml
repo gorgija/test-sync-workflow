@@ -1,8 +1,9 @@
 name: Sync workflow
 
-on:
-  schedule:
-    - cron: '0/15 * * * *' # change to be on every day at midnaight
+on: workflow_dispatch
+  #schedule:
+  #  - cron: '0/15 * * * *' # change to be on every day at midnaight
+  
 
 
 
