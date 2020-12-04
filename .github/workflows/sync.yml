@@ -2,7 +2,7 @@ name: Sync workflow
 
 on:
   schedule:
-    - cron: '0/15 * * * *' 
+    - cron: '0/15 * * * *' # change to be on every day at midnaight
 
 jobs:
   sync:
@@ -14,17 +14,21 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
       - name: Add Remote upsream
+        env:
+        	REPO_OWNER: "geored"
+        	REPO_NAME: "test-sync-workflow"
         run: |
           git config user.email "action@github.com"
           git config user.name "Github Action"
-          git remote add upstream $GITHUB_SERVER_URL/geored/test-sync-workflow.git
+          git remote add upstream $GITHUB_SERVER_URL/$REPO_OWNER/$REPO_NAME.git
           git remote -v
           git fetch upstream
           git checkout main
           git merge --allow-unrelated-histories upstream/main
-      - name: Push
+      - name: Push/Sync Changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+
 
