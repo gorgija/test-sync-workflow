@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: '0/15 * * * *' # change to be on every day at midnaight
 
+
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -30,5 +32,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+
 
 
