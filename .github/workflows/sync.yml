@@ -8,17 +8,20 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
           fetch-depth: 0
-      - run: |
+      - name: Add Remote upsream
+        run: |
           git remote add upstream $GITHUB_SERVER_URL/geored/test-sync-workflow.git
           git remote -v
           git fetch upstream
           git checkout main
           git merge --allow-unrelated-histories upstream/main
-      - uses: ad-m/github-push-action@master
+      - name: Push
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
